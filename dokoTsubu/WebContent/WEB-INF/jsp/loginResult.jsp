@@ -3,7 +3,7 @@
 <%@ page import="model.User" %>
 <%
 // セッションスコープからユーザー取得
-User user = (User) session.getAttribute("user");
+User loginUser = (User) session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -13,9 +13,9 @@ User user = (User) session.getAttribute("user");
 </head>
 <body>
 <h1>どこつぶログイン</h1>
-<% if(user != null) {%>
+<% if(loginUser != null) {%>
 <p>ログインに成功しました</p>
-<p>ようこそ<%= user.getName() %>さん</p>
+<p>ようこそ<%= loginUser.getName() %>さん</p>
 <a href="/dokoTsubu/Main">つぶやきの投稿閲覧へ</a>
 <% } else { %>
 <p>ログインに失敗しました</p>

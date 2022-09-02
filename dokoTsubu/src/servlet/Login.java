@@ -42,7 +42,7 @@ public class Login extends HttpServlet {
 		if(isLogin) {
 			// ユーザーをセッションスコープに保存
 			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
+			session.setAttribute("loginUser", user);
 		} 
 		// ログイン結果画面にフォーワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginResult.jsp");
