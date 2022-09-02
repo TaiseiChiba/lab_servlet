@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.User" %>
 <%
-User user = (User) session.getAttribute("user");
+User loginUser = (User) session.getAttribute("loginUser");
 %>
 <!DOCTYPE html>
 <html>
@@ -13,8 +13,8 @@ User user = (User) session.getAttribute("user");
 <body>
 <h1>どこつぶメイン</h1>
 <form action="/dokoTsubu/Main">
-<p><%= user.getName() %>さん、ログイン中
-<a>ログアウト</a>
+<p><%= loginUser.getName() %>さん、ログイン中
+<a href="/dokoTsubu/Logout">ログアウト</a>
 </p>
 <a>更新</a>
 <input type="text" name="mutter">

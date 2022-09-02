@@ -7,7 +7,8 @@
 <title>ログアウト</title>
 </head>
 <body>
-<h1>ログアウトしました</h1>
-<a href="/dokotsubu/">TOPへ</a>
+<h1>どこつぶログアウト</h1>
+<p>ログアウトしました</p>
+<a href="/dokoTsubu/">TOPへ</a>
 </body>
 </html>
