@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.User" %>
+<%@ page import="model.User, model.Mutter, java.util.List" %>
 <%
+// セッションスコープからユーザ取得
 User loginUser = (User) session.getAttribute("loginUser");
+// アプリケーションスコープからつぶやきリスト取得
+List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
 %>
 <!DOCTYPE html>
 <html>
@@ -12,13 +15,17 @@ User loginUser = (User) session.getAttribute("loginUser");
 </head>
 <body>
 <h1>どこつぶメイン</h1>
-<form action="/dokoTsubu/Main">
-<p><%= loginUser.getName() %>さん、ログイン中
+<p>
+<%= loginUser.getName() %>さん、ログイン中
 <a href="/dokoTsubu/Logout">ログアウト</a>
 </p>
-<a>更新</a>
-<input type="text" name="mutter">
-<button id="btn-tweet">つぶやく</button>
+<p><a href="/dokoTsubu/Main">更新</a></p>
+<form action="/dokoTsubu/Main" method="post">
+<input type="text" name="text">
+<input type="submit" value="つぶやく">
 </form>
+<% for(Mutter mutter : mutterList) { %>
+<p><%= mutter.getUserName() %> : <%= mutter.getText() %></p>
+<% } %>
 </body>
 </html>

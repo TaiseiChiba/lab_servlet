@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Mutter;
+import model.PostMutterLogic;
 import model.User;
 
 /**
@@ -48,6 +49,34 @@ public class Main extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
 			dispatcher.forward(request, response);
 		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// リクエストパラメータの取得
+		request.setCharacterEncoding("UTF-8");
+		final String text = request.getParameter("text");
+		
+		// 入力値チェック
+		if(text != null && text.length() != 0) {
+			// アプリケーションスコープに保存されたつぶやきリストを取得
+			ServletContext application = this.getServletContext();
+			final List<Mutter> mutterList = (List<Mutter>) application.getAttribute("mutterList");
+			
+			// セッションスコープに保存されたユーザーを取得
+			HttpSession session = request.getSession();
+			final User loginUser = (User) session.getAttribute("loginUser");
+			
+			// つぶやきをつぶやきリストに追加
+			Mutter mutter = new Mutter(loginUser.getName(), text);
+			PostMutterLogic postMutterLogic = new PostMutterLogic();
+			postMutterLogic.addText(mutter, mutterList);
+			
+			// アプリケーションスコープにつぶやきリストを保存
+			application.setAttribute("mutterList", mutterList);
+		}
+		// メイン画面にフォーワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

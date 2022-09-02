@@ -6,12 +6,12 @@ public class Mutter implements Serializable{
 	// ユーザー名
 	private String userName;
 	// 内容
-	private String contents;
+	private String text;
 	
 	Mutter(){}
-	Mutter(String userName, String contents) {
+	public Mutter(String userName, String text) {
 		this.userName = userName;
-		this.contents = contents;
+		this.text = text;
 	}
 	public String getUserName() {
 		return userName;
@@ -19,11 +19,11 @@ public class Mutter implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public String getContents() {
-		return contents;
+	public String getText() {
+		return text;
 	}
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 	
