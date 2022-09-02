@@ -73,6 +73,9 @@ public class Main extends HttpServlet {
 			
 			// アプリケーションスコープにつぶやきリストを保存
 			application.setAttribute("mutterList", mutterList);
+		} else {
+			// 入力されたテキストが空だった場合エラーメッセージをリクエストスコープに保存
+			request.setAttribute("errorMsg", "つぶやきが入力されていません");
 		}
 		// メイン画面にフォーワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
