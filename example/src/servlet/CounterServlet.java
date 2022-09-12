@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/CounterServlet")
 public class CounterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private Integer count; //訪問回数
 
 	/**
 	 * @see Servlet#init(ServletConfig)
@@ -26,12 +27,14 @@ public class CounterServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.init(config);
 		
-		// 訪問回数を表すIntegerインスタンスを新規作成しアプリケーションスコープに保存
-		Integer count = 0;
-		ServletContext application = config.getServletContext();
-		application.setAttribute("count", count);
+//		// 訪問回数を表すIntegerインスタンスを新規作成しアプリケーションスコープに保存
+//		Integer count = 0;
+//		ServletContext application = config.getServletContext();
+//		application.setAttribute("count", count);
 		
-		System.out.println("init()が実装されました");
+//		System.out.println("init()が実装されました");
+		
+		count = 0;
 	}
 
 	/**
@@ -47,11 +50,13 @@ public class CounterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// アプリケーションスコープに保存された訪問回数を増加　
-		ServletContext application = this.getServletContext();
-		Integer count = (Integer) application.getAttribute("count");
+//		// アプリケーションスコープに保存された訪問回数を増加　
+//		ServletContext application = this.getServletContext();
+//		Integer count = (Integer) application.getAttribute("count");
+//		count++;
+//		application.setAttribute("count", count);
+		
 		count++;
-		application.setAttribute("count", count);
 		
 		// HTML出力
 		response.setContentType("text/html; charset=UTF-8");
