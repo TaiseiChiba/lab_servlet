@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.Servlet;
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,19 +22,19 @@ public class CounterServlet extends HttpServlet {
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
-	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
-		super.init(config);
-		
-//		// 訪問回数を表すIntegerインスタンスを新規作成しアプリケーションスコープに保存
-//		Integer count = 0;
-//		ServletContext application = config.getServletContext();
-//		application.setAttribute("count", count);
-		
-//		System.out.println("init()が実装されました");
-		
-		count = 0;
-	}
+//	public void init(ServletConfig config) throws ServletException {
+//		// TODO Auto-generated method stub
+//		super.init(config);
+//		
+////		// 訪問回数を表すIntegerインスタンスを新規作成しアプリケーションスコープに保存
+////		Integer count = 0;
+////		ServletContext application = config.getServletContext();
+////		application.setAttribute("count", count);
+//		
+////		System.out.println("init()が実装されました");
+//		
+//		count = 0;
+//	}
 
 	/**
 	 * @see Servlet#destroy()
@@ -56,7 +55,7 @@ public class CounterServlet extends HttpServlet {
 //		count++;
 //		application.setAttribute("count", count);
 		
-		count++;
+		count += 1;
 		
 		// HTML出力
 		response.setContentType("text/html; charset=UTF-8");
