@@ -14,7 +14,7 @@ import dao.AccountDAO;
 public class ConnectCheck extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountDAO dao=new AccountDAO();
+		AccountDAO dao = new AccountDAO();
 		dao.ConnectCheck();
 	}
 }

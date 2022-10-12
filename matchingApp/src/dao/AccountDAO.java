@@ -10,6 +10,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import model.Account;
+import model.Login;
+
 public class AccountDAO {
 	private Connection db;
 	private PreparedStatement ps;
@@ -42,8 +45,45 @@ public class AccountDAO {
 			System.out.println("OK");
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
+			System.out.println("noOK");
 		}finally {
 			this.disconnect();
 		}
+	}
+	
+	public Account findByLogin(Login login) {
+		Account account = null;
+		
+		// dbへ接続
+		try {
+			this.connect();
+			// SELECT文を準備
+			String sql = "SELECT user_id, name, password FROM account "
+					+ "WHERE user_id = ? AND password = ?";
+			ps = db.prepareStatement(sql);
+			ps.setString(1, login.getUserId());
+			ps.setString(2, login.getPassword());
+			
+			// SELECT文実行
+			rs = ps.executeQuery();
+			
+			// 一致したユーザーがいた場合
+			// そのユーザーを表すAccount追加
+			if(rs.next()) {
+				String userId = rs.getString("user_id");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				account = new Account(userId, password, name);
+			}
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+			System.out.println("失敗");
+			return null;
+		} finally {
+			this.disconnect();
+		}
+		
+		// 見つかったアカウントまたはnullを返す
+		return account;
 	}
 }
