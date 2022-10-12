@@ -24,7 +24,7 @@ public class AccountDAO {
 		this.db = ds.getConnection();
 	}
 
-	private void disconnect()  {
+	private void disconnect() {
 		try {
 			if (rs != null) {
 				rs.close();
@@ -57,6 +57,7 @@ public class AccountDAO {
 		// dbへ接続
 		try {
 			this.connect();
+//			System.out.println("コネクトできてる");
 			// SELECT文を準備
 			String sql = "SELECT user_id, name, password FROM account "
 					+ "WHERE user_id = ? AND password = ?";
@@ -77,7 +78,6 @@ public class AccountDAO {
 			}
 		} catch (NamingException | SQLException e) {
 			e.printStackTrace();
-			System.out.println("失敗");
 			return null;
 		} finally {
 			this.disconnect();
@@ -85,5 +85,25 @@ public class AccountDAO {
 		
 		// 見つかったアカウントまたはnullを返す
 		return account;
+	}
+	
+	public void insertUser(Account account) {
+		try {
+			this.connect();
+//			System.out.println("コネクトできてる");
+			// SELECT文を準備
+			String sql = "insert into account(user_id, password, name) values(?,?,?)";
+			ps = db.prepareStatement(sql);
+			ps.setString(1, account.getUserId());
+			ps.setString(2, account.getPassword());
+			ps.setString(3, account.getName());
+			
+			// SELECT文実行
+			ps.execute();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		} finally {
+			this.disconnect();
+		}
 	}
 }

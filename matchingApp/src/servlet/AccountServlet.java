@@ -8,22 +8,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import model.Login;
-import model.LoginLogic;
+import model.Account;
+import model.AccountLogic;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class CreateAccount
  */
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/AccountServlet")
+public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public AccountServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -44,26 +43,18 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
+		// リクエストパラメータの取得
 		request.setCharacterEncoding("UTF-8");
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
-		
-		// ログイン処理の実行
-		Login login = new Login(userId, password);
-		LoginLogic bo = new LoginLogic();
-		boolean result = bo.execute(login);
-		
-		// ログイン処理の成功によって処理を分岐
-		if(result) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", userId);
-			
-			// フォーワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/loginOK.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			response.sendRedirect("/matchingApp/LoginServlet");
-		}
+		String name = request.getParameter("name");
+		// dbに保存
+		Account account = new Account(userId, password, name);
+		AccountLogic bo = new AccountLogic();
+		bo.excute(account);
+		// フォーワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

@@ -9,7 +9,7 @@
 <body>
 <ul>
 <li><a href="/matchingApp/LoginServlet">ログイン</a></li>
-<li>ユーザー登録</li>
+<li><a href="/matchingApp/AccountServlet"> アカウント登録</a></li>
 </ul>
 </body>
 </html>

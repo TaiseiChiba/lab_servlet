@@ -7,7 +7,8 @@
 <title>教科書マッチング</title>
 </head>
 <body>
-<p>ようこそ{ユーザーID}さん</p>
+<p>ようこそ${account.userId}さん</p>
+<button ></button>
 <a href="/matchingApp/WelcomeServlet">トップへ</a>
 </body>
 </html>
