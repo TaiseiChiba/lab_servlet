@@ -7,6 +7,7 @@
 <title>教科書マッチング</title>
 </head>
 <body>
+<h1>ようこそ、教科書マッチングへ</h1>
 <ul>
 <li><a href="/matchingApp/LoginServlet">ログイン</a></li>
 <li><a href="/matchingApp/AccountServlet"> アカウント登録</a></li>

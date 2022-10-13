@@ -7,6 +7,7 @@
 <title>教科書マッチング</title>
 </head>
 <body>
+<h1>ログイン画面</h1>
 <form action="/matchingApp/LoginServlet" method="post">
 ユーザーID：<input type="text" name="userId"><br>
 パスワード：<input type="password" name="password"><br>
