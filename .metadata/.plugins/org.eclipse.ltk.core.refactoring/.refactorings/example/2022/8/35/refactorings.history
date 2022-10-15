@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="リソース名 &apos;example/src/servlet/Register.java&apos; を &apos;RegisterUser.java&apos; に変更します" description="リソース &apos;Register.java&apos; の名前変更" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/servlet/Register.java" name="RegisterUser.java" stamp="1661521372160" updateReferences="true"/>
-</session>

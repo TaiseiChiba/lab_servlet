@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>フルーツ広場</title>
+<title>ログアウト</title>
 </head>
 <body>
-<p>
-${applicationScope.fruit.name}の値段は
-${applicationScope.fruit.price}円です。
-</p>
+<h1>どこつぶログアウト</h1>
+<p>ログアウトしました</p>
+<a href="/dokoTsubu/">TOPへ</a>
 </body>
 </html>
